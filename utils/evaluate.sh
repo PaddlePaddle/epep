@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/bin/bash 
 ################################################################################
 # Copyright (c) 2019 PaddlePaddle Authors. All Rights Reserved.
 #
@@ -16,5 +15,15 @@
 # limitations under the License.
 ################################################################################
 
+function main() {
+    infer_data="$1"
+    ckpt_version="$2"
+    echo "[TRACE] $(date) evaluate infer_data is ${infer_data}, checkpoint_version is ${ckpt_version}" >&2
 
+    #startup script for eval
+    #TODO: user-define metric here!!!
 
+    return 0
+}
+
+main "$@"

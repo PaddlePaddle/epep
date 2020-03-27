@@ -17,4 +17,31 @@
 ################################################################################
 
 
+"""
+ Specify the brief datasets_factory.py
+ Date: 2019/07/10 17:27:57
+"""
+
+models = {}
+
+def register_class(target_class):
+    """
+    register all nets classs. Including BaseNet and its sub-class
+    """
+    models[target_class.__name__] = target_class
+
+class Meta(type):
+    """
+    Meta class, for net class register
+    """
+    def __new__(meta, name, bases, class_dict):
+        cls = type.__new__(meta, name, bases, class_dict)
+        register_class(cls)
+        return cls
+
+def get_model(name):
+    """
+    get net class type with class name
+    """
+    return models.get(name, None)
 

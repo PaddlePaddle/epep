@@ -12,7 +12,7 @@
 
 ## 环境搭建
 
-1. 获取PaddlePaddle v1.5.1版本以上
+1. Linux CentOS 6.3, Python 2.7, 获取PaddlePaddle v1.6.1版本以上
 
 2. 配置修改conf/var_sys.conf
 
@@ -26,6 +26,8 @@
 ![EPEP Pred Overview](docs/pred_diff.png)
 
 ## 使用说明
+
+框架提供了一些NLP的例子，主要包括分类，回归，匹配，标注，翻译，生成等
 
 1. 定义输入
 
