@@ -137,6 +137,8 @@ class LinearRegression(BaseNet):
 
 ```
 #基本配置
+#如果模型需要自定义参数，只需要在配置文件直接加xxx就行，不需要代码里提前定义xxx, 就可以引用self._flags.xxxx
+[DEFAULT]
 dataset_name: LinearRegression
 #file_list prior to dataset_dir
 file_list: ./test/linear_regression.data
@@ -145,8 +147,12 @@ dataset_dir: ../tmp/data/lr
 file_pattern: part-
 #Model settings
 model_name: LinearRegression
+```
 
-#训练
+### 训练
+
+```
+[Train]
 base_lr: 0.01
 max_number_of_steps: None
 #Number of epochs from dataset source
@@ -156,26 +162,35 @@ log_every_n_steps: 10
 #The frequency with which the model is saved, in steps.
 save_model_steps: 100
 
-sh run.sh -c conf/linear_regression/linear_regression.local.conf [-m train]
-
 #默认是CPU，如果要GPU, 确保conv/var_sys.conf的cuda_lib_path配置
 platform: local-gpu
 
-#多卡
+#单卡或多卡
 CUDA_VISIBLE_DEVICES: 0,1
 
-#如果模型需要自定义参数，只需要在配置文件直接加xxx就行，不需要代码里提前定义xxx, 就可以引用self._flags.xxxx
+sh run.sh -c conf/linear_regression/linear_regression.local.conf [-m train]
 
-#预测
+```
+
+### 预测
+
+```
+[Evaluate]
+
 #for predict, init_pretrain_model prior to eval_dir, and can change the net by train saved
 #init_pretrain_model: ../tmp/model/lr/save_model/checkpoint_final
+#默认是CPU，如果要GPU, 确保conv/var_sys.conf的cuda_lib_path配置
+platform: local-gpu
+
+#单卡就行
+CUDA_VISIBLE_DEVICES: 0
 
 sh run.sh -c conf/linear_regression/linear_regression.local.conf -m predict
 
-#边训练边评估
-TODO
-
 ```
+
+### 边训练边评估
+TODO
 
 4. 总结
 
