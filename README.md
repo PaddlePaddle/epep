@@ -2,7 +2,7 @@
 
 [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/PaddlePaddle/epep) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
 
-**EPEP** is an Application Framework for PaddlePaddle, to make everyone can easily learn and use. 目前已经被广泛应用在百度内部业务，显著提升单机cpu, 单机GPU, 多机多卡的模型迭代效率
+**EPEP** is an Application Framework for PaddlePaddle, to make everyone can easily learn and use. 目前已经被广泛应用在百度内部业务，显著提升单机CPU, 单机GPU, 多机多卡的模型迭代效率
 
 
 ## 目录
@@ -16,7 +16,7 @@
 
 2. 配置修改conf/var_sys.conf
 ```
-fluid_bin=/home/epep/tools/paddle_release_home/python/bin/python4.8
+fluid_bin=/home/epep/tools/paddle_release_home/python/bin/python
 
 #gpu训练配置
 cuda_lib_path=/home/epep/tools/cuda-9.0/lib64:/home/epep/tools/cudnn/cudnn_v7.3/cuda/lib64:/home/epep/tools/nccl-2.2_cuda-8.0/lib:$LD_LIBRARY_PATH
@@ -34,7 +34,7 @@ cuda_lib_path=/home/epep/tools/cuda-9.0/lib64:/home/epep/tools/cudnn/cudnn_v7.3/
 
 框架提供了一些NLP的例子，主要包括分类，回归，匹配，标注，翻译，生成等
 
-这里以LR为例，用户只要写20行相关代码即可完成，全是业务模型相关，通过epep轻松一键cpu->gpu, GPU多卡，多机多卡(TODO with Eazy-DL)
+这里以LR为例，用户只要写20行相关代码即可完成，全是业务模型相关，通过epep轻松一键CPU->GPU, GPU多卡，多机多卡(TODO with Easy-DL)
 
 1. 定义输入
 
@@ -166,4 +166,6 @@ TODO
 
 3. 预测server
 
-4. ...
+4. 分布式Eazy-DL, Hadoop/Spark预测
+
+5. ...
