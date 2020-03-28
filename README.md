@@ -108,7 +108,7 @@ class LinearRegression(BaseNet):
         
         if self.is_training:
             #默认是Adam，如果要自定义optimizer
-            #optimizer = fluid.optimizer.SGD(learning_rate=FLAGS.base_lr)
+            #optimizer = fluid.optimizer.SGD(learning_rate=self._flags.base_lr)
             #net_output['optimizer'] = optimizer
 
             net_output["loss"] = avg_cost
@@ -135,7 +135,27 @@ class LinearRegression(BaseNet):
 3. 配置&运行
 
 ```
+#基本配置
+
+dataset_name: LinearRegression
+#file_list prior to dataset_dir
+file_list: ./test/linear_regression.data
+dataset_dir: ../tmp/data/lr
+#only read file match pattern in dataset_dir
+file_pattern: part-
+#Model settings
+model_name: LinearRegression
+
 #训练
+base_lr: 0.01
+max_number_of_steps: None
+#Number of epochs from dataset source
+num_epochs_input: 100
+#The frequency with which logs are print
+log_every_n_steps: 10
+#The frequency with which the model is saved, in steps.
+save_model_steps: 100
+
 sh run.sh -c conf/linear_regression/linear_regression.local.conf [-m train]
 
 #默认是CPU，如果要GPU, 确保conv/var_sys.conf的cuda_lib_path配置
@@ -147,12 +167,21 @@ CUDA_VISIBLE_DEVICES: 0,1
 #如果模型需要自定义参数，只需要在配置文件直接加xxx就行，不需要代码里提前定义xxx, 就可以引用self._flags.xxxx
 
 #预测
+#for predict, init_pretrain_model prior to eval_dir, and can change the net by train saved
+#init_pretrain_model: ../tmp/model/lr/save_model/checkpoint_final
+
 sh run.sh -c conf/linear_regression/linear_regression.local.conf -m predict
 
 #边训练边评估
 TODO
 
 ```
+
+4. 总结
+
+用户只要关注3个：conf/xxx/xxx.local.conf, datasets/xxx.py, nets/xxx.py, 保证路径位置是这样即可
+
+新模型比较快的就是cp这lr的重命名下再去修改对应的配置和代码即可。
 
 ## Contributing|贡献
 
@@ -166,6 +195,6 @@ TODO
 
 3. 预测server
 
-4. 分布式Eazy-DL, Hadoop/Spark预测
+4. 分布式Easy-DL, Hadoop/Spark预测
 
 5. ...
