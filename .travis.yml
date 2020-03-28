@@ -1,0 +1,36 @@
+language: python
+cache: ccache
+sudo: required
+dist: trusty
+
+compiler:
+  - gcc
+services:
+  - docker
+os:
+  - linux
+env:
+  - JOB=LR_TEST
+
+addons:
+  apt:
+    packages:
+      - git
+      - python
+      - python-pip
+      - python2.7-dev
+    #ssh_known_hosts: 13.229.163.131
+
+before_install:
+  - sudo pip install -U virtualenv pre-commit pip
+  - docker pull paddlepaddle/paddle:latest
+
+script:
+  - exit_code=0
+  - docker run -i --rm -v "$PWD:/epep_test" paddlepaddle/paddle:latest /bin/bash -c
+    'cd /epep_test; sh test/lr_test.sh' || exit_code=$(( exit_code | $? ))
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
