@@ -87,7 +87,7 @@ function get_platform() {
 
     eval $param_platform=$platform
 
-    return 
+    return 0
 }
 
 #get data_reader form config_file
@@ -113,7 +113,7 @@ function get_reader() {
     fi
 
     eval $param_reader=$reader
-    return 
+    return 0 
 }
 
 #calculate env: input is core.conf pattern, replace variable with its values
@@ -230,7 +230,7 @@ function export_cuda_env() {
     fi
 
     echo "[DEBUG] $(date) LD_LIBRARY_PATH is $LD_LIBRARY_PATH" >&2
-    return
+    return 0
 }
 
 #set gpu num for frame. gpu num may come from user args, user conf, or compution from other config

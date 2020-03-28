@@ -20,9 +20,11 @@ source "${root_dir}/frame/scheduler/scheduler_functions.sh"
 
 function run_platform_scheduler() {
     local platform=$1
+    ret=0
     case ${platform} in 
         local-cpu)
             ${fluid_bin} ${root_dir}/frame/core/cpu_trainer.py --conf_file ${config_file}
+            ret=$?
             ;;    
         local-gpu)
             if [[ ${core_gpu_num} -gt 1 ]]; then
@@ -32,16 +34,18 @@ function run_platform_scheduler() {
                 #nvprof --profile-child-processes \
                 ${fluid_bin} ${root_dir}/frame/core/gpu_trainer.py --conf_file ${config_file}
             fi
+            ret=$?
             ;;
         pserver-local)
             sh ${root_dir}/frame/scheduler/run_pserver_local.sh ${config_file} 
+            ret=$?
             ;;
         *)
             echo "[FATAL] $(date) Invalid platform ${platform}" >&2 
             return 1
     esac
 
-    return 0
+    return $ret
 }
 
 function main() {
