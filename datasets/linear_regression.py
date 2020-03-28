@@ -28,7 +28,8 @@ import numpy as np
 import random
 import paddle.fluid as fluid
 
-from base_dataset import BaseDataset
+from datasets.base_dataset import BaseDataset
+
 
 class LinearRegression(BaseDataset):
     """

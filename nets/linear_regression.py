@@ -28,7 +28,7 @@ import collections
 
 import paddle.fluid as fluid
 
-from base_net import BaseNet
+from nets.base_net import BaseNet
 
 
 class LinearRegression(BaseNet):
