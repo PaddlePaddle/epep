@@ -27,8 +27,7 @@ before_install:
 
 script:
   - exit_code=0
-  - docker run -i --rm -v "$PWD:/epep_test" paddlepaddle/paddle:latest /bin/bash -c
-    'cd /epep_test; rm /bin/sh && ln -s /bin/bash /bin/sh; ls -l /bin/sh; ./test/lr_test.sh' || exit_code=$(( exit_code | $? ))
+  - docker run -i --rm -v "$PWD:/epep_test" paddlepaddle/paddle:latest /bin/bash -c 'cd /epep_test; which python; python -c "import site; a=site.getsitepackages()[0]; import os; print(os.listdir(a))"; python --version; rm /bin/sh && ln -s /bin/bash /bin/sh; ls -l /bin/sh; ./test/lr_test.sh' || exit_code=$(( exit_code | $? ))
 
 notifications:
   email:
