@@ -139,13 +139,14 @@ class LinearRegression(BaseNet):
 #基本配置
 #如果模型需要自定义参数，只需要在配置文件直接加xxx就行，不需要代码里提前定义xxx, 就可以引用self._flags.xxxx
 [DEFAULT]
+#自定义实现的dataset类名
 dataset_name: LinearRegression
 #file_list prior to dataset_dir
 file_list: ./test/linear_regression.data
 dataset_dir: ../tmp/data/lr
 #only read file match pattern in dataset_dir
 file_pattern: part-
-#Model settings
+#Model settings，自定义实现的net类名
 model_name: LinearRegression
 ```
 
