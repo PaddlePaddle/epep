@@ -37,7 +37,7 @@ cuda_lib_path=/home/epep/tools/cuda-9.0/lib64:/home/epep/tools/cudnn/cudnn_v7.3/
 
 这里以LR为例，用户只要写20行相关代码即可完成，全是业务模型相关，通过epep轻松一键CPU->GPU, GPU多卡，多机多卡(TODO with Easy-DL)
 
-1. 定义输入
+### 1. 定义输入
 
 ```python
 class LinearRegression(BaseDataset):
@@ -82,7 +82,7 @@ class LinearRegression(BaseDataset):
             ....
 ```
 
-2. 组网
+### 2. 组网
 
 ```python
 class LinearRegression(BaseNet):
@@ -133,7 +133,7 @@ class LinearRegression(BaseNet):
     def pred_format(self, result, **kwargs):
 ```
 
-3. 配置&运行
+### 3. 配置&运行
 
 ```
 #基本配置
@@ -149,7 +149,7 @@ file_pattern: part-
 model_name: LinearRegression
 ```
 
-### 训练
+#### 3.1 训练
 
 ```
 [Train]
@@ -172,7 +172,7 @@ sh run.sh -c conf/linear_regression/linear_regression.local.conf [-m train]
 
 ```
 
-### 预测
+#### 3.2 预测
 
 ```
 [Evaluate]
@@ -189,10 +189,10 @@ sh run.sh -c conf/linear_regression/linear_regression.local.conf -m predict
 
 ```
 
-### 边训练边评估
+#### 3.3 边训练边评估
 TODO
 
-4. 总结
+### 4. 总结
 
 用户只要关注3个：conf/xxx/xxx.local.conf, datasets/xxx.py, nets/xxx.py, 保证路径位置是这样即可
 
