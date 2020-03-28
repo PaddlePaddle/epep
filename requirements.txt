@@ -1,0 +1,4 @@
+scikit-learn>=0.20.3
+pyzmq>=18.0.2
+sentencepiece>=0.1.8
+nltk>=3.4
