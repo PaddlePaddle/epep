@@ -33,7 +33,7 @@ from datasets.base_dataset import BaseDataset
 
 class LinearRegression(BaseDataset):
     """
-    TextClassification dataset 
+    LinearRegression dataset 
     """
     def __init__(self, flags):
         super(LinearRegression, self).__init__(flags)
