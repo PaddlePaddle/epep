@@ -21,6 +21,7 @@ fluid_bin=/home/epep/tools/paddle_release_home/python/bin/python
 #gpu训练配置
 cuda_lib_path=/home/epep/tools/cuda-9.0/lib64:/home/epep/tools/cudnn/cudnn_v7.3/cuda/lib64:/home/epep/tools/nccl-2.2_cuda-8.0/lib:$LD_LIBRARY_PATH
 ```
+
 ## 框架说明
 
 ### 整体框架
@@ -136,7 +137,6 @@ class LinearRegression(BaseNet):
 
 ```
 #基本配置
-
 dataset_name: LinearRegression
 #file_list prior to dataset_dir
 file_list: ./test/linear_regression.data
@@ -181,12 +181,11 @@ TODO
 
 用户只要关注3个：conf/xxx/xxx.local.conf, datasets/xxx.py, nets/xxx.py, 保证路径位置是这样即可
 
-新模型比较快的就是cp这lr的重命名下再去修改对应的配置和代码即可。
+新模型开发比较快的就是 cp这lr的3个文件到对应位置，然后重命名下再去修改对应的配置和代码即可。
 
 ## Contributing|贡献
 
 本项目目标是让策略开发高效，愉快的做一个炼丹师，欢迎贡献！
-
 
 ## TODO
 1. Rank, NMT, ERNIE, 分类，匹配，序列标注，Attention，视觉等AI先进模型
