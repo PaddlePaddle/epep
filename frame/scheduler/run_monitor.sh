@@ -46,7 +46,7 @@ function train_monitor() {
             echo "[TRACE] $(date) ckpt_version: ${ckpt_version}; last_ckpt: ${last_ckpt}; used_ckpt: ${used_ckpt}; NEW"  >&2
             infer_data="${train_dir_path}/${ckpt_version}.pred"
             sh -x ${root_dir}/frame/scheduler/run_predict.sh ${config_file} "${config_gpus}" "${config_gpu_num}" "${mode}" ${ckpt_file} 1>${infer_data}
-            if [[ -e ${root_dir}/utils/evaluate.sh ]]; then
+            if [[ $? -eq 0 -a -e ${root_dir}/utils/evaluate.sh ]]; then
                 sh -x ${root_dir}/utils/evaluate.sh ${infer_data} ${ckpt_version}
             fi
             used_ckpt=$last_ckpt
@@ -67,7 +67,7 @@ function main() {
     config_gpu_num="$3"
     mode="$4"
     train_monitor ${config_file} "${config_gpus}" "${config_gpu_num}" "${mode}"
-    return 0
+    return $?
 }
 
 main "$@"

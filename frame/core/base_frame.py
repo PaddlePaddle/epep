@@ -292,8 +292,8 @@ class BaseFrame(object):
         if not self.verify_net_input(context, FLAGS):
             return None
  
-        self.input_layers = context["inputs"].values()
         self.input_names = [key for key in context["inputs"]]
+        self.input_layers = [context["inputs"][key] for key in self.input_names]
 
         self.debug_keys = context["debug_list"]
         self.debug_tensors = [value for value in self.input_layers if value.name in self.debug_keys]

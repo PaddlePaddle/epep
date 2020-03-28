@@ -132,21 +132,25 @@ function end_processor() {
 function run_mode_scheduler() {
     local schedule_abs_dir="${config_root_dir}/frame/scheduler"
 
+    ret=0
     case $config_mode in 
         train) 
             sh -x ${schedule_abs_dir}/run_train.sh ${config_file} "${config_gpus}" "${config_gpu_num}"
+            ret=$?
             ;;
         predict)
             sh -x ${schedule_abs_dir}/run_predict.sh ${config_file} "${config_gpus}" "${config_gpu_num}" "${config_mode}"
+            ret=$?
             ;;
         monitor)
             sh -x ${schedule_abs_dir}/run_monitor.sh ${config_file} "${config_gpus}" "${config_gpu_num}" "${config_mode}"
+            ret=$?
             ;;
         *)
             echo "[FATAL] $(date) mode is invalid: ${config_mode}" >&2
             return -1
     esac
-    return 0
+    return $ret
 }
 
 function main() {

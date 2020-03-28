@@ -1,6 +1,8 @@
 # Easy Paddle, Effective Paddle
 
-[![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/PaddlePaddle/epep) [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/PaddlePaddle/epep.svg?branch=master)](https://travis-ci.org/PaddlePaddle/epep)
+[![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/PaddlePaddle/epep)
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
 
 **EPEP** is an Application Framework for PaddlePaddle, to make everyone can easily learn and use. 目前已经被广泛应用在百度内部业务，显著提升单机CPU, 单机GPU, 多机多卡的模型迭代效率
 
