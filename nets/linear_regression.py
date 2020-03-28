@@ -51,8 +51,9 @@ class LinearRegression(BaseNet):
         model_output = {}
         net_output = {"debug_output": debug_output, 
                       "model_output": model_output}
-      
-        net_output["loss"] = avg_cost
+        
+        if self.is_training:
+            net_output["loss"] = avg_cost
         
         debug_output['y'] = inputs["y"]
         debug_output['y_predict'] = y_predict

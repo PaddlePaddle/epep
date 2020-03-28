@@ -58,7 +58,7 @@ class LinearRegression(BaseDataset):
         #debug_list = [key for key in inputs]
         return context
 
-    def parse_oneline(self, line, meta=None, label_idx=None, qid=None, **kargs):
+    def parse_oneline(self, line):
         """
         parse sample 
         """
