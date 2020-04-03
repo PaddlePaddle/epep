@@ -336,7 +336,7 @@ function user_conf_interceptor() {
 
     if [[ $mode == "monitor" ]]; then
         local train_dir_path=$(parse_user_conf $config_file "train_dir" "Train")
-        local ckpt_file="${train_dir_path}/ckpt"
+        local ckpt_file="${train_dir_path}/checkpoint.meta"
         if [[ -e ${ckpt_file} ]]; then
             echo "[TRACE] $(date) ckpt_file is ${ckpt_file}" >&2
             sed -n '2,$p' ${ckpt_file} >> ${config_file}
