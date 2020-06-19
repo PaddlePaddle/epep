@@ -79,14 +79,14 @@ function catch_exception() {
         local conf_num=$(find -L ${config_root_dir} -name "*${config_file}*" | wc -l)
         if [[ $conf_num -lt 1 ]]; then
             echo "[FATAL] $(date) Conf file is not exist. ${config_file}" >&2
-            return -1
+            return 1
         fi
         
         local final_config_file=$(find -L ${config_root_dir} -name "*${config_file}*" \
                 | grep "conf$"| tail -1)
         if [[ ! -e ${final_config_file} ]]; then
             echo "[FATAL] $(date) Conf file is not exist. ${config_file}" >&2
-            return -1
+            return 1
         else
             echo "[TRACE] $(date) Instead conf file as ${final_config_file}" >&2
             config_file=${final_config_file}
@@ -95,7 +95,7 @@ function catch_exception() {
     local is_invalid_mode=$(echo "${core_all_mode}" | egrep -o " ${config_mode} ")
     if [[ ${is_invalid_mode} == "" ]]; then
         echo "[FATAL] $(date) Invalid mode ${config_mode}" >&2
-        return -1
+        return 1
     fi
 
     return 0
@@ -111,7 +111,7 @@ function init_processor() {
     #check args
     catch_exception
     if [ $? -ne 0 ]; then
-        return -1
+        return 1
     fi
     #backup conf
     cp ${config_file} ${config_file}.tmp
@@ -148,7 +148,7 @@ function run_mode_scheduler() {
             ;;
         *)
             echo "[FATAL] $(date) mode is invalid: ${config_mode}" >&2
-            return -1
+            return 1
     esac
     return $ret
 }
@@ -159,19 +159,19 @@ function main() {
     init_processor "$@"
     if [ $? -ne 0 ]; then
         echo "[FATAL] $(date) Init processor failure." >&2
-        return -1
+        return 1
     fi
 
     run_mode_scheduler
     if [[ $? -ne 0 ]]; then
         echo "[FATAL] $(date) Run scheduler failure." >&2
-        return -1
+        return 1
     fi
 
     end_processor
     if [[ $? -ne 0 ]]; then
         echo "[FATAL] $(date) End processor failure." >&2
-        return -1
+        return 1
     fi
     echo "[Trace] $(date) End of running program.." >&2
     return 0
