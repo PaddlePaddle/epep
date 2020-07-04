@@ -30,6 +30,7 @@ import sys
 import argparse
 from collections import OrderedDict
 import numpy as np
+import random
 import logging
 import paddle
 import paddle.fluid as fluid
@@ -472,7 +473,8 @@ class BaseFrame(object):
 
         fluid.default_startup_program().random_seed = FLAGS.sample_seed
         fluid.default_main_program().random_seed = FLAGS.sample_seed
-
+        np.random.seed(FLAGS.sample_seed)
+        random.seed(FLAGS.sample_seed)
         return self.run(FLAGS)
     
     def create_places(self, FLAGS):
